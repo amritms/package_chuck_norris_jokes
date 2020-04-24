@@ -6,7 +6,7 @@
 Require the package using composer:
 
 ```bash
-composer require amritms/package_chuck_norris_jokes
+composer require amritms/chuck-norris-jokes
 ```
 
 ## Usage example
@@ -21,7 +21,7 @@ $joke = $jokes->getRandomJoke();
 
 ## Contributing
 
-1. Fork it (<https://github.com/amritms/package_chuck_norris_jokes>)
+1. Fork it (<https://github.com/amritms/chuck-norris-jokes>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
