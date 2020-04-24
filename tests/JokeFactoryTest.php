@@ -5,7 +5,6 @@ namespace Amritms\ChuckNorrisJokes\Test;
 use Amritms\ChuckNorrisJokes\JokeFactory;
 use PHPUnit\Framework\TestCase;
 
-
 class JokeFactoryTest extends TestCase
 {
     /** @test **/
@@ -30,7 +29,7 @@ class JokeFactoryTest extends TestCase
             'In the Beginning there was nothing … then Chuck Norris roundhouse kicked nothing and told it to get a job.',
             'When God said, “Let there be light!” Chuck said, “Say Please.”',
             'Chuck Norris has a mug of nails instead of coffee in the morning.',
-            'If Chuck Norris were to travel to an alternate dimension in which there was another Chuck Norris and they both fought, they would both win.'
+            'If Chuck Norris were to travel to an alternate dimension in which there was another Chuck Norris and they both fought, they would both win.',
         ];
 
         $jokes = new JokeFactory();
