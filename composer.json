@@ -9,7 +9,9 @@
       "email": "amritms@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "guzzlehttp/guzzle": "^6.5"
+  },
   "autoload": {
     "psr-4": {
       "Amritms\\ChuckNorrisJokes\\": "src/"

@@ -2,39 +2,28 @@
 
 namespace Amritms\ChuckNorrisJokes\Test;
 
-use Amritms\ChuckNorrisJokes\JokeFactory;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Handler\MockHandler;
+use Amritms\ChuckNorrisJokes\JokeFactory;
 
 class JokeFactoryTest extends TestCase
 {
     /** @test **/
     public function it_returns_a_random_joke()
     {
-        $jokes = new JokeFactory([
-            'This is a joke',
-        ]);
+        $mock = new MockHandler([
+            new Response(200, [], '{ "type": "success", "value": { "id": 559, "joke": "Chuck Norris&quote; unit tests don&quote;t run. They die.", "categories": ["nerdy"] } }')]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+
+        $jokes = new JokeFactory($client);
+
         $joke = $jokes->getRandomJoke();
 
-        $this->assertSame('This is a joke', $joke);
-    }
-
-    /** @test **/
-    public function it_returns_a_predefined_joke()
-    {
-        $chuckNorrisJokes = [
-            'Chuck Norris doesn’t read books. He stares them down until he gets the information he wants.',
-            'Time waits for no man. Unless that man is Chuck Norris.',
-            'If you spell Chuck Norris in Scrabble, you win. Forever.',
-            'Chuck Norris breathes air … five times a day.',
-            'In the Beginning there was nothing … then Chuck Norris roundhouse kicked nothing and told it to get a job.',
-            'When God said, “Let there be light!” Chuck said, “Say Please.”',
-            'Chuck Norris has a mug of nails instead of coffee in the morning.',
-            'If Chuck Norris were to travel to an alternate dimension in which there was another Chuck Norris and they both fought, they would both win.',
-        ];
-
-        $jokes = new JokeFactory();
-        $joke = $jokes->getRandomJoke();
-
-        $this->assertContains($joke, $chuckNorrisJokes);
+        $this->assertSame('Chuck Norris&quote; unit tests don&quote;t run. They die.', $joke);
     }
 }

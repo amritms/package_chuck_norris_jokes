@@ -2,28 +2,24 @@
 
 namespace Amritms\ChuckNorrisJokes;
 
+use GuzzleHttp\Client;
+
 class JokeFactory
 {
-    protected $jokes = [
-        'Chuck Norris doesn’t read books. He stares them down until he gets the information he wants.',
-        'Time waits for no man. Unless that man is Chuck Norris.',
-        'If you spell Chuck Norris in Scrabble, you win. Forever.',
-        'Chuck Norris breathes air … five times a day.',
-        'In the Beginning there was nothing … then Chuck Norris roundhouse kicked nothing and told it to get a job.',
-        'When God said, “Let there be light!” Chuck said, “Say Please.”',
-        'Chuck Norris has a mug of nails instead of coffee in the morning.',
-        'If Chuck Norris were to travel to an alternate dimension in which there was another Chuck Norris and they both fought, they would both win.',
-    ];
+    const API_ENDPOINT = 'http://api.icndb.com/jokes/random';
+    protected $client;
 
-    public function __construct(array $jokes = null)
+    public function __construct(Client $client = null)
     {
-        if ($jokes) {
-            $this->jokes = $jokes;
-        }
+        $this->client = $client ?: new Client();
     }
 
     public function getRandomJoke()
     {
-        return $this->jokes[array_rand($this->jokes)];
+        $response = $this->client->get(self::API_ENDPOINT);
+
+        $joke = json_decode($response->getBody()->getContents());
+
+        return $joke->value->joke;
     }
 }
