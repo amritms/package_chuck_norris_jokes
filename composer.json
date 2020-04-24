@@ -1,0 +1,26 @@
+{
+  "name": "amritms/chuck-norris-jokes",
+  "description": "Create random Chuck Norris jokes",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Amrit Man Shrestha",
+      "email": "amritms@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Amritms\\ChuckNorrisJokes\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Amritms\\ChuckNorrisJokes\\Tests\\": "tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.1"
+  }
+}
