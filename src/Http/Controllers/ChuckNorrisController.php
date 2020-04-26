@@ -10,5 +10,4 @@ class ChuckNorrisController
     {
         return view('chuck-norris::joke', ['joke' => ChuckNorris::getRandomJoke()]);
     }
-    
 }

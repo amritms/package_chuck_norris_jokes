@@ -2,12 +2,10 @@
 
 namespace Amritms\ChuckNorrisJokes;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Route;
-use Amritms\ChuckNorrisJokes\JokeFactory;
-use Amritms\ChuckNorrisJokes\Http\Controllers\ChuckNorrisController;
 use Amritms\ChuckNorrisJokes\Console\ChuckNorrisJoke;
-
+use Amritms\ChuckNorrisJokes\Http\Controllers\ChuckNorrisController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class ChuckNorrisJokesServiceProvider extends ServiceProvider
 {
@@ -15,23 +13,23 @@ class ChuckNorrisJokesServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                ChuckNorrisJoke::class
+                ChuckNorrisJoke::class,
             ]);
         }
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'chuck-norris');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'chuck-norris');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/chuck-norris')    
+            __DIR__.'/../resources/views' => resource_path('views/vendor/chuck-norris'),
         ], 'chuck-norris-views');
 
         $this->publishes([
-            __DIR__.'/../config/chuck-norris.php' => base_path('config/chuck-norris.php')
+            __DIR__.'/../config/chuck-norris.php' => base_path('config/chuck-norris.php'),
         ], 'chuck-norris-config');
 
-        if(! class_exists('CreateJokesTable')){
+        if (! class_exists('CreateJokesTable')) {
             $this->publishes([
-                __DIR__.'/../database/migrations/create_jokes_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_jokes_table')
+                __DIR__.'/../database/migrations/create_jokes_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_jokes_table'),
             ], 'chuck-norris-migrations');
         }
 
@@ -40,7 +38,7 @@ class ChuckNorrisJokesServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('chuck-norris', function(){
+        $this->app->bind('chuck-norris', function () {
             return new JokeFactory();
         });
 

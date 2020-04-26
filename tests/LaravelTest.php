@@ -1,27 +1,27 @@
 <?php
+
 namespace Amritms\ChuckNorrisJokes\Test;
 
-use Orchestra\Testbench\TestCase;
-use Illuminate\Support\Facades\Artisan;
-use Amritms\ChuckNorrisJokes\Models\Joke;
-use Amritms\ChuckNorrisJokes\Facades\ChuckNorris;
-use Amritms\ChuckNorrisJokes\Console\ChuckNorrisJoke;
 use Amritms\ChuckNorrisJokes\ChuckNorrisJokesServiceProvider;
+use Amritms\ChuckNorrisJokes\Console\ChuckNorrisJoke;
+use Amritms\ChuckNorrisJokes\Facades\ChuckNorris;
+use Amritms\ChuckNorrisJokes\Models\Joke;
+use Illuminate\Support\Facades\Artisan;
+use Orchestra\Testbench\TestCase;
 
 class LaravelTest extends TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [
-            ChuckNorrisJokesServiceProvider::class
+            ChuckNorrisJokesServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'ChuckNorris' => ChuckNorrisJoke::class
+            'ChuckNorris' => ChuckNorrisJoke::class,
         ];
     }
 
@@ -45,7 +45,7 @@ class LaravelTest extends TestCase
 
         $output = Artisan::output();
 
-        $this->assertSame('some joke'. PHP_EOL, $output);
+        $this->assertSame('some joke'.PHP_EOL, $output);
     }
 
     /** @test */

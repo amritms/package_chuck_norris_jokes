@@ -2,8 +2,8 @@
 
 namespace Amritms\ChuckNorrisJokes\Console;
 
-use Illuminate\Console\Command;
 use Amritms\ChuckNorrisJokes\Facades\ChuckNorris;
+use Illuminate\Console\Command;
 
 class ChuckNorrisJoke extends Command
 {
